@@ -1,0 +1,33 @@
+$primary: #59e55d;
+$primHover: #3ed643;
+$prim: #52b656;
+
+$secondary: #4bffcc;
+$secHover: #20d3a0;
+
+$red: #ff4e35;
+$redHover: #ff290e;
+
+$text: #fafafa;
+
+$bgMain: #4d1f77;
+$bgBody: #514f5d;
+
+$shadow: #1d1d1d;
+$boxShadow: 0 0 4px 0 $shadow;
+
+:export {
+  primary: $primary;
+  primHover: $primHover;
+  prim: $prim;
+  secondary: $secondary;
+  secHover: $secHover;
+
+  red: $red;
+  redHover: $redHover;
+
+  text: $text;
+
+  bgMain: $bgMain;
+  bgBody: $bgBody;
+}

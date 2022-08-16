@@ -1,0 +1,27 @@
+@import '../theme/palette.module';
+
+.tabs {
+  color: $prim;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.tab {
+  &:hover {
+    color: $primary;
+  }
+}
+
+.ant-tabs-tab:hover {
+  color: $primary !important;
+}
+
+.ant-tabs-ink-bar {
+  background: $primary !important;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: $primary !important;
+}

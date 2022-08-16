@@ -1,0 +1,36 @@
+@import 'smart-grid';
+@import '../theme/palette.module';
+
+.items {
+  margin-top: 20px;
+  @include row-flex();
+  justify-content: space-around;
+
+  .item {
+    @include col();
+    @include size(4);
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+
+    &:hover {
+      .icon {
+        color: $primHover;
+      }
+      .title {
+        color: $primHover;
+      }
+    }
+
+    .icon {
+      color: $primary;
+    }
+
+    .title {
+      color: $text;
+      @include xs-block {
+        font-size: 0.89em;
+      }
+    }
+  }
+}

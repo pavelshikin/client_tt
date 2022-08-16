@@ -1,0 +1,22 @@
+@import 'smart-grid';
+@import '../theme/palette.module';
+
+.box {
+  width: 50%;
+  max-width: 500px;
+  min-height: 270px;
+  margin: 5% auto 0;
+  padding: 20px 30px 30px;
+  background: $bgMain;
+  box-shadow: $boxShadow;
+  display: flex;
+  flex-direction: column;
+
+  @include sm-block() {
+    width: 80%;
+  }
+
+  @include xs-block() {
+    width: 90%;
+  }
+}
