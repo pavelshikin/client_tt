@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import { fetchPosts, fetchPostsByCategory } from '../store/actions';
 import { postsByCategory } from '../utilits/postsByCategory';
 import { Badge } from 'antd';
@@ -12,6 +13,7 @@ import {
 import s from '../styles/Home.module.scss';
 
 const HomePage = () => {
+    const { isOwner, isAdmin } = useAuth();
   const posts = useSelector(state => state.posts.posts);
   const dispatch = useDispatch();
   const notes = postsByCategory(posts, 'notes');
@@ -42,7 +44,9 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(fetchPosts());
-    dispatch(fetchPostsByCategory('60d788aee61f64154ce18551'));
+    if(isOwner || isAdmin){
+      dispatch(fetchPostsByCategory('60d788aee61f64154ce18551'));
+    }
   }, [dispatch]);
 
   return (

@@ -7,19 +7,18 @@ import NoteForm from '../components/Note/NoteForm';
 import NoteList from '../components/Note/NoteList';
 
 const ProductsPage = () => {
-  const { user, isOwner, isAdmin } = useAuth();
+  const { isAdmin } = useAuth();
   const posts = useSelector(state => state.posts.posts);
   const allPostsCategory = useSelector(state => state.posts.postsByCategory);
   let products = postsByCategory(posts, 'products');
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user && (isOwner || isAdmin)) {
+    if (isAdmin) {
       dispatch(fetchPostsByCategory('60d788aee61f64154ce18551'));
     }
     dispatch(fetchPosts());
   }, [dispatch]);
-
 
   return (
     <div className="container">
@@ -27,7 +26,7 @@ const ProductsPage = () => {
       <NoteList
         notes={products}
         allPosts={allPostsCategory}
-        checkBox={true}
+        checkBox={isAdmin}
         checkDefault={true}
       />
     </div>
