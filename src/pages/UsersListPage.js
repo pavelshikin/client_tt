@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const UsersListPage = () => {
   const { user } = useAuth();
-  const posts = useSelector(state => state.posts.posts);
+  const users = useSelector(state => state.posts.posts);
   const allPosts = useSelector(state => state.posts.postsByCategory);
 
   return (

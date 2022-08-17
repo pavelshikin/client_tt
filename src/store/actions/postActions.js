@@ -7,7 +7,7 @@ export const fetchPosts = () => {
     dispatch(showLoader());
 
     await api
-      .get(`/posts/me`)
+      .get(`posts/me`)
       .then(res => {
         dispatch({
           type: postTypes.FETCH_POSTS_SUCCESS,
