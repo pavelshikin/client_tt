@@ -6,6 +6,8 @@ export const authContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isOwner, setIsOwner] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const isAuth = !!user;
   const refersh = Cookies.get('Refresh');
 
@@ -28,8 +30,12 @@ const AuthProvider = ({ children }) => {
   const authenticateRefresh = async () => {
     try {
       await api.get('auth/refresh');
-      const res = await api.post('users/me');
-      setUser(res.data);
+
+      let { data } = await api.post('users/me');
+
+      setUser(data);
+      setManager(data, 'OWNER');
+      setManager(data, 'ADMIN');
     } catch (e) {
       removeUserAndTokens();
       console.log(`no token found...`);
@@ -51,11 +57,11 @@ const AuthProvider = ({ children }) => {
       Secure: true
     });
 
-    console.log(document.Cookie);
-
     try {
-      const res = await api.post('users/me');
-      setUser(res.data);
+      let { data } = await api.post('users/me');
+      setUser(data);
+      setManager(data, 'OWNER');
+      setManager(data, 'ADMIN');
     } catch (e) {
       removeUserAndTokens();
       console.log(e);
@@ -73,13 +79,36 @@ const AuthProvider = ({ children }) => {
 
   const removeUserAndTokens = () => {
     setUser(null);
+    setIsOwner(false);
+    setIsAdmin(false);
     Cookies.remove('Authentication');
     Cookies.remove('Refresh');
   };
 
+  const setManager = (user, role) => {
+    if (user && user.roles.indexOf(role) > -1) {
+      if(role === 'OWNER'){
+        setIsOwner(true);
+      }
+
+      if(role === 'ADMIN'){
+        setIsAdmin(true);
+      }
+    }
+  }
+
   return (
     <authContext.Provider
-      value={{ isAuth, login, logout, user, authenticateRefresh }}
+      value = {
+        {
+          isAuth,
+          login,
+          logout,
+          user,
+          isOwner, isAdmin,
+          authenticateRefresh
+        }
+      }
     >
       {children}
     </authContext.Provider>

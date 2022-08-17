@@ -1,12 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
+import RoleRoute from './RoleRoute';
 import NotesPage from '../../pages/NotesPage';
 import LoginPage from '../../pages/LoginPage';
 import NotFoundPage from '../../pages/NotFoundPage';
 import FilmsAndBooksPage from '../../pages/FilmsAndBooksPage';
 import ProductsPage from '../../pages/ProductsPage';
 import HomePage from '../../pages/HomePage';
+import UsersListPage from '../../pages/UsersListPage';
 
 const Routing = () => {
   return (
@@ -25,11 +27,18 @@ const Routing = () => {
         <FilmsAndBooksPage />
       </PrivateRoute>
 
+      <RoleRoute role="OWNER" path="/users" exact={true}>
+        <UsersListPage />
+      </RoleRoute>
+
       <PrivateRoute path="/" exact={true}>
         <HomePage />
       </PrivateRoute>
 
-      <Route path="*" component={NotFoundPage} />
+      <PrivateRoute path="*">
+        <NotFoundPage / >
+      </PrivateRoute>
+
     </Switch>
   );
 };

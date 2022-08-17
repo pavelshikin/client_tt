@@ -1,67 +1,73 @@
 @import '../theme/palette.module';
 
 .head {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  background: $bgMain;
-  height: 45px;
-  box-shadow: 0px 3px 6px -3px $shadow;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: $secondary;
-  z-index: 999;
+   position: fixed;
+   width: 100%;
+   top: 0;
+   background: $bgMain;
+   height: 45px;
+   box-shadow: 0px 3px 6px -3px $shadow;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   color: $secondary;
+   z-index: 999;
 
-  .btmMenu {
-    color: $primary;
-    background: transparent;
-    font-size: 21px;
-  }
+   .btmMenu {
+      color: $primary;
+      background: transparent;
+      font-size: 21px;
+   }
 
-  .rightBox {
-    span {
-      font-size: 16px;
-    }
-    .btnExit {
-      color: $red;
-      font-size: 20px;
-    }
-  }
+   .rightBox {
+      span {
+         font-size: 16px;
+      }
+
+      .btnExit {
+         color: $red;
+         font-size: 20px;
+      }
+   }
 }
 
 .draw {
-  max-width: 100px;
+   max-width: 100px;
 }
 
 .menu {
-  padding: 0;
-  background: transparent;
-  border-right: none;
+   padding: 0;
+   background: transparent;
+   border-right: none;
 
-  .menuItem {
-    background: transparent;
-    color: $primary;
-    font-size: 18px;
-    padding: 0 10px 0 15px;
-    margin-bottom: 0 !important;
-
-    &:hover {
+   .menuItem {
+      background: transparent;
       color: $primary;
-      background: #9c9c9c94;
-    }
-  }
+      font-size: 18px;
+      padding: 0 10px 0 15px;
+      margin-bottom: 0 !important;
+
+      &:hover {
+         color: $primary;
+         background: #9c9c9c94;
+      }
+   }
 }
 
 .ant-menu-item {
-  margin: 0 !important;
+   margin: 0 !important;
 }
 
 .ant-menu-item-selected {
-  background-color: #7b7b7b94 !important;
+   background-color: #7b7b7b94 !important;
 
-  &:hover {
-    color: $primary;
-    background: #9c9c9c94 !important;
-  }
+   &:hover {
+      color: $primary;
+      background: #9c9c9c94 !important;
+   }
+}
+
+.ant-drawer-content-wrapper {
+   min-width: 260px;
+   max-width: 350px;
 }

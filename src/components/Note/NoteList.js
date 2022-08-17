@@ -5,9 +5,9 @@ import NoteItem from './NoteItem';
 import { Checkbox } from 'antd';
 
 const NoteList = ({ notes, allPosts, checkBox, checkDefault }) => {
-  const { user } = useAuth();
+  const { user, isOwner, isAdmin } = useAuth();
   const [check, setCheck] = useState(checkDefault);
-  
+
   const onChange = e => {
     setCheck(prevState => !prevState);
   };
@@ -15,7 +15,7 @@ const NoteList = ({ notes, allPosts, checkBox, checkDefault }) => {
   const renderCheck = () => {
     return (
       <>
-        {user && user.roles.indexOf('OWNER' || 'ADMIN') !== -1 && checkBox ? (
+        {user && (isOwner || isAdmin) && checkBox ? (
           <div style={{ overflow: 'auto' }}>
             <Checkbox
               onChange={onChange}

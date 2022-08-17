@@ -9,7 +9,8 @@ import {
   HomeOutlined,
   ShoppingCartOutlined,
   ReadOutlined,
-  LoginOutlined
+  LoginOutlined,
+  TeamOutlined
 } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import s from '../../styles/Navbar.module.scss';
@@ -46,7 +47,11 @@ const menuItems = [
 
 function NavBar() {
   const [visible, setVisible] = useState(false);
-  const { user, isAuth, logout } = useAuth();
+  const {
+    user,
+    isAuth,
+    isOwner, logout
+  } = useAuth();
   const history = useHistory();
   const [current, setCurrent] = React.useState(
     String(history.location.pathname)
@@ -107,7 +112,7 @@ function NavBar() {
         onClose={onClose}
         visible={visible}
         bodyStyle={{ background: '#4d1f77', padding: '40px 0px 0' }}
-        width={200}
+        width={'30%'}
       >
         <Menu onClick={handleClick} selectedKeys={current} className={s.menu}>
           {isAuth ? (
@@ -121,16 +126,29 @@ function NavBar() {
                 <span style={{ color: '#fff' }}>{text}</span>
               </Menu.Item>
             ))
-          ) : (
-            <Menu.Item
-              type="link"
-              key={'/login'}
-              icon={<LoginOutlined style={{ fontSize: 20 }} />}
-              className={s.menuItem}
-            >
-              <span style={{ color: '#fff' }}>Вход</span>
-            </Menu.Item>
-          )}
+            ) : (
+              <Menu.Item
+                type="link"
+                key={'/login'}
+                icon={<LoginOutlined style={{ fontSize: 20 }} />}
+                className={s.menuItem}
+              >
+                <span style={{ color: '#fff' }}>Вход</span>
+              </Menu.Item>
+            )
+          }
+          {
+            isAuth && isOwner ?
+              <Menu.Item
+                type = "link"
+                key = {'/users'}
+                icon = {<TeamOutlined style = {{fontSize: 20}}/>}
+                className = {s.menuItem}
+              >
+                <span style={{ color: '#fff' }}>Пользователи</span>
+              </Menu.Item>
+              : ''
+          }
         </Menu>
       </Drawer>
     </>

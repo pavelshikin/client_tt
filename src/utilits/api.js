@@ -2,10 +2,10 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const api = axios.create({
-  baseURL: 'https://shikin-links.tk/api/',
-  // baseURL: 'http://127.0.0.1:5000/',
-  withCredentials: true,
-  credentials: 'include',
+  // baseURL: 'https://shikin-links.tk/api/',
+  baseURL: 'http://127.0.0.1:5000/',
+  // withCredentials: true,
+  // credentials: 'include',
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json'

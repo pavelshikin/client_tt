@@ -2,19 +2,19 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
-const PrivateRoute = ({children, ...rest }) => {
-  const { isAuth } = useAuth();
+const RoleRoute = ({role, children, ...rest}) => {
+  const { isAuth, user  } = useAuth();
 
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        isAuth ? (
+        (isAuth && user && user.roles.indexOf(role) > -1) ? (
           children
         ) : (
           <Redirect
             to={{
-              pathname: '/login',
+              pathname: '/404',
               state: { from: location }
             }}
           />
@@ -24,4 +24,4 @@ const PrivateRoute = ({children, ...rest }) => {
   );
 };
 
-export default PrivateRoute;
+export default RoleRoute;
