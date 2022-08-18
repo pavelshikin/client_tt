@@ -1,14 +1,20 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useAuth } from '../contexts/AuthContext';
+import { fetchUsers } from '../store/actions';
+import UsersList from '../components/User/UsersList';
 
 const UsersListPage = () => {
-  const { user } = useAuth();
-  const users = useSelector(state => state.posts.posts);
-  const allPosts = useSelector(state => state.posts.postsByCategory);
+  const users = useSelector(state => state.users.users);
+  const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(fetchUsers());
+    }, [dispatch]);
 
   return (
-    <div className="container">Список пользователей</div>
+    <div className="container">
+      <UsersList users={users} />
+    </div>
   );
 }
 

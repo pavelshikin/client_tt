@@ -1,0 +1,24 @@
+@import 'smart-grid';
+@import '../theme/palette.module';
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.item {
+  padding: 3px 16px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background: $bgMain;
+
+  .title {
+    color: $secondary;
+    font-size: 1.3em;
+    font-weight: 500;
+
+    @include sm-block() {
+      font-size: 1.05em;
+    }
+  }
+}

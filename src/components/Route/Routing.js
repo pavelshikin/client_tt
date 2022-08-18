@@ -9,6 +9,7 @@ import FilmsAndBooksPage from '../../pages/FilmsAndBooksPage';
 import ProductsPage from '../../pages/ProductsPage';
 import HomePage from '../../pages/HomePage';
 import UsersListPage from '../../pages/UsersListPage';
+import UserDetailsPage from '../../pages/UserDetailsPage';
 
 const Routing = () => {
   return (
@@ -29,6 +30,10 @@ const Routing = () => {
 
       <RoleRoute role="OWNER" path="/users" exact={true}>
         <UsersListPage />
+      </RoleRoute>
+
+      <RoleRoute role="OWNER" path="/user/:id" exact={true}>
+        < UserDetailsPage / >
       </RoleRoute>
 
       <PrivateRoute path="/" exact={true}>
