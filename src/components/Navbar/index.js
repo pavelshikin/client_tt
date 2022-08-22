@@ -10,7 +10,8 @@ import {
   ShoppingCartOutlined,
   ReadOutlined,
   LoginOutlined,
-  TeamOutlined
+  TeamOutlined,
+  ArrowLeftOutlined
 } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import s from '../../styles/Navbar.module.scss';
@@ -81,15 +82,29 @@ function NavBar() {
     history.push('/login');
   };
 
+  const goBack = () => {
+    history.goBack()
+  }
+
+
   return (
     <>
       <Header className={s.head} style={{ padding: 0 }}>
-        <Button
-          type="link"
-          onClick={showDrawer}
-          icon={<MenuOutlined className={s.btmMenu} />}
-          size="large"
-        />
+        <div className={s.leftBox}>
+          <Button
+            type="link"
+            onClick={showDrawer}
+            icon={<MenuOutlined className={s.btmMenu} />}
+            size="large"
+          />
+          <Button
+            type="link"
+            onClick={goBack}
+            style={{marginLeft: 10}}
+            icon={<ArrowLeftOutlined className={s.btmMenu} />}
+            size="large"
+          />
+        </div>
         <div className={s.rightBox}>
           {user ? (
             <>
@@ -118,7 +133,7 @@ function NavBar() {
         closable={false}
         onClose={onClose}
         visible={visible}
-        bodyStyle={{ background: '#4d1f77', padding: '40px 0px 0' }}
+        bodyStyle={{ padding: '40px 0px 0' }}
         width={'30%'}
       >
         <Menu onClick={handleClick} selectedKeys={current} className={s.menu}>

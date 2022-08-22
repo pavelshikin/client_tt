@@ -6,6 +6,7 @@
    justify-content: space-between;
    max-width: 750px;
    margin: 0 auto;
+   padding-top: 24px;
    @include md(flex-direction, column);
 }
 
@@ -28,7 +29,7 @@
 }
 
 .details {
-   margin-bottom: 12px;
+   margin-bottom: 24px;
 
    .label {
       font-size: 1.3em;
@@ -46,6 +47,7 @@
 
    button {
       margin-right: 16px;
+      margin-bottom: 12px;
    }
 
    .deleteUser {

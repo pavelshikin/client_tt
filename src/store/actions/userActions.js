@@ -65,6 +65,7 @@ export const createUser = user => {
       .then(res => {
         const newUser = {
           _id: res.data.userId,
+          roles: res.data.roles,
           email,
           username
         };

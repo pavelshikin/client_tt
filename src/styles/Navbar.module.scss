@@ -23,6 +23,7 @@
       a {
          color: $secondary !important;
          font-size: 16px;
+         margin-right: 16px;
 
          &:hover {
             color: $secHover !important
@@ -38,6 +39,10 @@
 
 .draw {
    max-width: 100px;
+}
+
+.ant-drawer-body{
+   background: $bgMain;
 }
 
 .menu {

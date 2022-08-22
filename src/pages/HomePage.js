@@ -13,7 +13,7 @@ import {
 import s from '../styles/Home.module.scss';
 
 const HomePage = () => {
-    const { isOwner, isAdmin } = useAuth();
+  const { isOwner } = useAuth();
   const posts = useSelector(state => state.posts.posts);
   const dispatch = useDispatch();
   const notes = postsByCategory(posts, 'notes');
@@ -44,7 +44,7 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(fetchPosts());
-    if(isOwner || isAdmin){
+    if(isOwner){
       dispatch(fetchPostsByCategory('60d788aee61f64154ce18551'));
     }
   }, [dispatch]);
@@ -55,7 +55,7 @@ const HomePage = () => {
         {menuItems.map(({ text, count, href, icon }, index) => (
           <Link to={href} key={index} className={s.item}>
             <div>
-              <Badge count={count} color={'#db4bff'}>
+              <Badge count={count} color={'#ff16c3'}>
                 <div className={s.icon}>{icon}</div>
               </Badge>
               <h4 className={s.title}>{text}</h4>

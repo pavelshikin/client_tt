@@ -59,7 +59,7 @@ const UserForm = () => {
               value={password}
               onChange={e => setPassword(e.target.value)}
               placeholder="Пароль"
-              type="text"
+              type="password"
               style={{ marginTop: 10, background: '#fff', borderRadius: 5 }}
             />
             <Input
