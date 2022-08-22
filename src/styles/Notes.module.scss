@@ -38,13 +38,13 @@
         font-size: 1.05em;
       }
     }
-    
+
    .btnBox {
      display: flex;
      justify-content: space-between;
      min-width: 50px;
      align-items: center;
-     
+
      .deleteBtn {
       color: $red;
       font-size: 18px;
@@ -78,7 +78,7 @@
 .noteFormBox {
   width: 100%;
   max-width: 900px;
-  margin: 5px auto 10px;
+  margin: 5px auto 16px;
   background: $bgMain;
 
   .panel {

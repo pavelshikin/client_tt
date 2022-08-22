@@ -94,6 +94,7 @@ const UserDetailsPage = () => {
       setUserRoles(newRolesArray)
       dispatch(addRole(state.user._id, r));
     }
+    getRoles(userRoles)
   };
 
   return (
@@ -102,7 +103,7 @@ const UserDetailsPage = () => {
         <div className={s.details}>
         <div className={s.label}>Имя: <span>{thisUser.username}</span></div>
         <div className={s.label}>Email: <span>{thisUser.email}</span></div>
-        <div className={s.label}>Роль: <span>{getRoles(thisUser.roles)}</span></div>
+        <div className={s.label}>Роль: <span>{getRoles(userRoles)}</span></div>
       </div>
 
       {
@@ -115,8 +116,6 @@ const UserDetailsPage = () => {
         </div>
         : ''
       }
-
-
 
       </div>
     </div>

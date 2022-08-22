@@ -10,8 +10,9 @@
 }
 
 .item {
+   max-width: 900px;
    padding: 3px 16px;
-   margin-bottom: 15px;
+   margin:0 auto 16px;
    border-radius: 10px;
    background: $bgMain;
 

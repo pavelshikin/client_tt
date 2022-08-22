@@ -20,8 +20,10 @@ const NoteItem = ({ note }) => {
 
   const updateNote = postId => {
     let post = {
-    id: postId, title, content
-    }; 
+      id: postId,
+      title,
+      content
+    };
     dispatch(updatePost(post))
     dispatch(fetchPosts())
     setEditMode(false)
@@ -29,14 +31,14 @@ const NoteItem = ({ note }) => {
 
   const renderEditMode = () => {
    return (
-    
+
      <div className={s.note}>
       <div className={s.head}>
         <div className={s.noteForm} style={{width: '100%'}}>
           <Input         value={ title }
                          onChange={ e => setTitle(e.target.value) }
                          type="text"
-                         style={{ marginTop: 10, background: '#fff', borderRadius: 5 }}         
+                         style={{ marginTop: 10, background: '#fff', borderRadius: 5 }}
           />
           <TextArea
                 value={content}
@@ -56,7 +58,7 @@ const NoteItem = ({ note }) => {
           </Btn>
         </div>
       </div>
-    </div>    
+    </div>
    )
   }
 
@@ -72,11 +74,11 @@ const NoteItem = ({ note }) => {
               setTitle(note.title)
               setContent(note.content)
            } }>
-            <EditFilled className={s.changeBtn}/> 
+            <EditFilled className={s.changeBtn}/>
           </div>
           <div onClick={() => deleteNote(note._id)}>
             <DeleteFilled className={s.deleteBtn} />
-          </div> 
+          </div>
         </div>
       </div>
       {note.content ? <div className={s.content}>{note.content}</div> : null}
@@ -84,5 +86,5 @@ const NoteItem = ({ note }) => {
    }</>
   );
 };
- 
+
 export default NoteItem;
