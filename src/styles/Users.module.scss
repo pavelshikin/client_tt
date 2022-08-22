@@ -1,9 +1,12 @@
 @import 'smart-grid';
 @import '../theme/palette.module';
 
-.content {
-   max-width: 900px;
+.wrap {
+   display: flex;
+   justify-content: space-between;
+   max-width: 750px;
    margin: 0 auto;
+   @include md(flex-direction, column);
 }
 
 .item {
@@ -24,14 +27,14 @@
 }
 
 .details {
-   max-width: 500px;
-   margin: 0 auto 12px;
+   margin-bottom: 12px;
 
    .label {
       font-size: 1.3em;
       font-weight: 500;
       color: $secondary;
-      span{
+
+      span {
          color: #fff;
       }
    }
@@ -42,6 +45,10 @@
 
    button {
       margin-right: 16px;
+   }
+
+   .deleteUser {
+      background: #ff4e35 !important;
    }
 }
 

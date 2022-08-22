@@ -8,7 +8,7 @@ import {
   UsergroupAddOutlined,
   UserDeleteOutlined
 } from '@ant-design/icons';
-import { Modal, Checkbox } from 'antd';
+import { Modal, Checkbox, Button } from 'antd';
 
 import { Btn } from '../theme';
 import { deleteUser, addRole, removeRole } from '../store/actions';
@@ -98,7 +98,8 @@ const UserDetailsPage = () => {
 
   return (
     <div className="container">
-      <div className={s.details}>
+      <div className={s.wrap}>
+        <div className={s.details}>
         <div className={s.label}>Имя: <span>{thisUser.username}</span></div>
         <div className={s.label}>Email: <span>{thisUser.email}</span></div>
         <div className={s.label}>Роль: <span>{getRoles(thisUser.roles)}</span></div>
@@ -109,12 +110,15 @@ const UserDetailsPage = () => {
         ? <div className={s.actions}>
           {/* <Btn onClick={() => setEdit(true)}>Сменить пароль</Btn> */}
           <Btn onClick={() => setShowForm(!showForm)}><UsergroupAddOutlined /> Управление ролями</Btn>
-          <Btn onClick={showConfirm}><UserDeleteOutlined /> Удалить</Btn>
+          <Btn onClick={showConfirm} className={s.deleteUser}><UserDeleteOutlined /> Удалить</Btn>
+          { showForm && isOwner ? <div className={s.form}>{roleForm()}</div>  : '' }
         </div>
         : ''
       }
 
-      { showForm && isOwner ? <div className={s.form}>{roleForm()}</div>  : '' }
+
+
+      </div>
     </div>
   );
 }
