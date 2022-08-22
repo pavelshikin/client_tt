@@ -40,7 +40,7 @@ const UserDetailsPage = () => {
   const getRoles = roles => {
     let string ='';
     for (let i = 0; i < roles.length; i++) {
-      let sign = (i === roles.length - 1) ? '.' : ', ';
+      let sign = (i === roles.length - 1) ? '' : ', ';
       string = string + roles[i] + sign
     }
     return string;
@@ -99,9 +99,9 @@ const UserDetailsPage = () => {
   return (
     <div className="container">
       <div className={s.details}>
-        <div className={s.label}>Имя: {thisUser.username}</div>
-        <div className={s.label}>Email: {thisUser.email}</div>
-        <div className={s.label}>Роль: {getRoles(thisUser.roles)}</div>
+        <div className={s.label}>Имя: <span>{thisUser.username}</span></div>
+        <div className={s.label}>Email: <span>{thisUser.email}</span></div>
+        <div className={s.label}>Роль: <span>{getRoles(thisUser.roles)}</span></div>
       </div>
 
       {

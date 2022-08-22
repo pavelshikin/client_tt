@@ -2,55 +2,59 @@
 @import '../theme/palette.module';
 
 .content {
-  max-width: 900px;
-  margin: 0 auto;
+   max-width: 900px;
+   margin: 0 auto;
 }
 
 .item {
-  padding: 3px 16px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  background: $bgMain;
+   padding: 3px 16px;
+   margin-bottom: 15px;
+   border-radius: 10px;
+   background: $bgMain;
 
-  .title {
-    color: $secondary;
-    font-size: 1.3em;
-    font-weight: 500;
+   .title {
+      color: $secondary;
+      font-size: 1.3em;
+      font-weight: 500;
 
-    @include sm-block() {
-      font-size: 1.05em;
-    }
-  }
+      @include sm-block() {
+         font-size: 1.05em;
+      }
+   }
 }
 
 .details {
-  margin-bottom: 12px;
+   max-width: 500px;
+   margin: 0 auto 12px;
 
-  .label {
-    font-size: 1.3em;
-    font-weight: 500;
-  }
+   .label {
+      font-size: 1.3em;
+      font-weight: 500;
+      color: $secondary;
+      span{
+         color: #fff;
+      }
+   }
 }
 
 .actions {
-  margin-bottom: 12px;
+   margin-bottom: 12px;
 
-  button{
-    margin-right: 16px;
-  }
+   button {
+      margin-right: 16px;
+   }
 }
 
 .form {
-  padding: 10px;
+   padding: 10px;
 
-  .row{
-    display: flex;
-    align-items: center;
-    padding: 6px 0;
+   .row {
+      display: flex;
+      align-items: center;
+      padding: 6px 0;
 
-    .role{
-      min-width: 100px;
-    }
-  }
+      .role {
+         min-width: 100px;
+      }
+   }
 }
-
