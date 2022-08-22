@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postsByCategory } from '../utilits/postsByCategory';
+import { postsByCategory, getCategoryByValue } from '../utilits/postsByCategory';
 import { Tabs } from 'antd';
 import NoteList from '../components/Note/NoteList';
 import NoteForm from '../components/Note/NoteForm';
@@ -10,10 +10,15 @@ import { fetchPosts } from '../store/actions';
 
 const { TabPane } = Tabs;
 
+const FILMS = 'films'
+const BOOKS = 'books'
+
 const FilmsAndBooksPage = () => {
   const posts = useSelector(state => state.posts.posts);
-  const films = postsByCategory(posts, 'films');
-  const books = postsByCategory(posts, 'books');
+  const films = postsByCategory(posts, FILMS);
+  const books = postsByCategory(posts, BOOKS);
+  const catFilms = getCategoryByValue(posts, FILMS);
+  const catBooks = getCategoryByValue(posts, BOOKS);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,7 +43,7 @@ const FilmsAndBooksPage = () => {
           }
           key="1"
         >
-          <NoteForm catId={'60df0aa75ae4dd2c6427e323'} catName={'films'} />
+          <NoteForm catId={catFilms._id} catName={FILMS} />
           <NoteList notes={films} />
         </TabPane>
         <TabPane
@@ -50,7 +55,7 @@ const FilmsAndBooksPage = () => {
           }
           key="2"
         >
-          <NoteForm catId={'60df0aba5ae4dd2c6427e324'} catName={'books'} />
+          <NoteForm catId={catBooks._id} catName={BOOKS} />
           <NoteList notes={books} />
         </TabPane>
       </Tabs>

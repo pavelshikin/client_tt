@@ -2,27 +2,31 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth } from '../contexts/AuthContext';
 import { fetchPostsByCategory, fetchPosts } from '../store/actions';
-import { postsByCategory } from '../utilits/postsByCategory';
+import { postsByCategory, getCategoryByValue } from '../utilits/postsByCategory';
 import NoteForm from '../components/Note/NoteForm';
 import NoteList from '../components/Note/NoteList';
+
+const PRODUCTS = 'products';
 
 const ProductsPage = () => {
   const { isAdmin } = useAuth();
   const posts = useSelector(state => state.posts.posts);
   const allPostsCategory = useSelector(state => state.posts.postsByCategory);
-  let products = postsByCategory(posts, 'products');
+  const category = getCategoryByValue(posts, PRODUCTS);
+  let products = postsByCategory(posts, PRODUCTS);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (isAdmin) {
-      dispatch(fetchPostsByCategory('60d788aee61f64154ce18551'));
+      dispatch(fetchPostsByCategory(category._id));
     }
     dispatch(fetchPosts());
   }, [dispatch]);
 
   return (
     <div className="container">
-      <NoteForm catId={'60d788aee61f64154ce18551'} catName={'products'} count={products.length} />
+      <NoteForm catId={category._id} catName={PRODUCTS} count={products.length} />
       <NoteList
         notes={products}
         allPosts={allPostsCategory}
