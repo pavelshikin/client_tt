@@ -22,3 +22,35 @@
     }
   }
 }
+
+.details {
+  margin-bottom: 12px;
+
+  .label {
+    font-size: 1.3em;
+    font-weight: 500;
+  }
+}
+
+.actions {
+  margin-bottom: 12px;
+
+  button{
+    margin-right: 16px;
+  }
+}
+
+.form {
+  padding: 10px;
+
+  .row{
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+
+    .role{
+      min-width: 100px;
+    }
+  }
+}
+

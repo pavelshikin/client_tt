@@ -5,7 +5,7 @@ import './styles/main.scss';
 import Layout from './components/Layout';
 import Routing from './components/Route/Routing';
 import Loader from './components/Loader';
-import ModalError from './components/Modal';
+import ModalError from './components/Modal/ModalError';
 
 const App = () => {
   const loading = useSelector(state => state.app.loading);

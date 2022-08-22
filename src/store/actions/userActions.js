@@ -2,12 +2,14 @@ import api from '../../utilits/api';
 import { userTypes } from '../types';
 import { showLoader, hideLoader, showError } from './';
 
+const url = userTypes.USER_API_URL;
+
 export const fetchUsers = () => {
   return async dispatch => {
     dispatch(showLoader());
 
     await api
-      .get(`users`)
+      .get(url)
       .then(res => {
         dispatch({
           type: userTypes.FETCH_ALL_USERS_SUCCESS,
@@ -32,7 +34,7 @@ export const fetchUserById = id => {
     dispatch(showLoader());
 
     await api
-      .get(`users/${id}`)
+        .get(`${url}/${id}`)
       .then(res => {
         dispatch({
           type: userTypes.FETCH_USER_SUCCESS,
@@ -51,6 +53,81 @@ export const fetchUserById = id => {
     dispatch(hideLoader());
   };
 };
+
+export const deleteUser= id => {
+  return async dispatch => {
+    dispatch(showLoader());
+
+    await api
+      .delete(`${url}/${id}`)
+      .then(res => {
+        dispatch({
+          type: userTypes.DELETE_USER_SUCCESS,
+          payload: res.data.id
+        });
+      })
+      .catch(function(error) {
+          dispatch({
+            type: userTypes.DELETE_USER_ERROR,
+            payload: 'Ошибка удаления пользователя'
+          });
+          dispatch(showError('Ошибка удаления пользователя'));
+          console.log(error.response);
+      });
+
+    dispatch(hideLoader());
+  };
+};
+
+export const addRole = (userId, value) => {
+  return async dispatch => {
+    dispatch(showLoader());
+
+    await api
+      .post(`${url}/role`, { userId, value })
+      .then(res => {
+        dispatch({
+          type: userTypes.ADD_ROLE_USER_SUCCESS,
+          payload: res.data
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: userTypes.ADD_ROLE_USER_SUCCESS,
+          payload: 'Ошибка добавление роли пользователя'
+        });
+        dispatch(showError('Ошибка добавление роли пользователя'));
+        console.log(error.response);
+      });
+
+    dispatch(hideLoader());
+  };
+}
+
+export const removeRole = (userId, value) => {
+  return async dispatch => {
+    dispatch(showLoader());
+
+    await api
+      .put(`${url}/role`, { userId, value })
+      .then(res => {
+        dispatch({
+          type: userTypes.REMOVE_ROLE_USER_SUCCESS,
+          payload: res.data
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: userTypes.REMOVE_ROLE_USER_SUCCESS,
+          payload: 'Ошибка снятие роли пользователя'
+        });
+        dispatch(showError('Ошибка снятие роли пользователя'));
+        console.log(error.response);
+      });
+
+    dispatch(hideLoader());
+  };
+}
 
 // export const createPost = post => {
 //   const { title, content, categoryId, categoryName } = post;
@@ -90,30 +167,6 @@ export const fetchUserById = id => {
 //           });
 //           console.log(error);
 //         }
-//       });
-
-//     dispatch(hideLoader());
-//   };
-// };
-
-// export const removePost = id => {
-//   return async dispatch => {
-//     dispatch(showLoader());
-
-//     await api
-//       .delete(`posts/${id}`)
-//       .then(res => {
-//         dispatch({
-//           type: postTypes.DELETE_POST_SUCCESS,
-//           payload: res.data
-//         });
-//       })
-//       .catch(function(error) {
-//           dispatch({
-//             type: postTypes.DELETE_POST_ERROR,
-//             payload: 'Ошибка'
-//           });
-//           console.log(error.response);
 //       });
 
 //     dispatch(hideLoader());
