@@ -54,6 +54,44 @@ export const fetchUserById = id => {
   };
 };
 
+export const createUser = user => {
+  const { email, password, username } = user;
+
+  return async dispatch => {
+    dispatch(showLoader());
+
+    await api
+      .post('auth/registration', { email, password, username })
+      .then(res => {
+        const newUser = {
+          _id: res.data.userId,
+          email,
+          username
+        };
+        dispatch({
+          type: userTypes.CREATE_USER_SUCCESS,
+          payload: newUser
+        });
+      })
+      .catch(function(error) {
+        if (error.response && error.response.status === 403) {
+          dispatch({
+            type: userTypes.CREATE_USER_ERROR,
+            payload: error.response.data.message || 'Ошибка сервера'
+          });
+        } else {
+          dispatch({
+            type: userTypes.CREATE_USER_ERROR,
+            payload: 'Ошибка сервера'
+          });
+          console.log(error);
+        }
+      });
+
+    dispatch(hideLoader());
+  };
+};
+
 export const deleteUser= id => {
   return async dispatch => {
     dispatch(showLoader());
@@ -129,49 +167,6 @@ export const removeRole = (userId, value) => {
   };
 }
 
-// export const createPost = post => {
-//   const { title, content, categoryId, categoryName } = post;
-
-//   return async dispatch => {
-//     dispatch(showLoader());
-
-//     await api
-//       .post(`posts`, { title, content, categoryId })
-//       .then(res => {
-//         const newPost = {
-//           _id: res.data._id,
-//           title,
-//           content,
-//           category: [
-//             {
-//               _id: categoryId,
-//               name: categoryName
-//             }
-//           ]
-//         };
-//         dispatch({
-//           type: postTypes.CREATE_POST_SUCCESS,
-//           payload: newPost
-//         });
-//       })
-//       .catch(function(error) {
-//         if (error.response.status === 403) {
-//           dispatch({
-//             type: postTypes.CREATE_POST_ERROR,
-//             payload: error.response.data.message || 'Ошибка сервера'
-//           });
-//         } else {
-//           dispatch({
-//             type: postTypes.CREATE_POST_ERROR,
-//             payload: 'Ошибка сервера'
-//           });
-//           console.log(error);
-//         }
-//       });
-
-//     dispatch(hideLoader());
-//   };
-// };
 
 // export const updatePost = post => {
 //   return async dispatch => {

@@ -6,27 +6,27 @@ import { postsByCategory, getCategoryByValue } from '../utilits/postsByCategory'
 import NoteForm from '../components/Note/NoteForm';
 import NoteList from '../components/Note/NoteList';
 
-const PRODUCTS = 'products';
+const CAT_NAME = 'products';
+const CAT_ID = '60d788aee61f64154ce18551'
 
 const ProductsPage = () => {
   const { isAdmin } = useAuth();
   const posts = useSelector(state => state.posts.posts);
   const allPostsCategory = useSelector(state => state.posts.postsByCategory);
-  const category = getCategoryByValue(posts, PRODUCTS);
-  let products = postsByCategory(posts, PRODUCTS);
+  let products = postsByCategory(posts, CAT_NAME);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (isAdmin) {
-      dispatch(fetchPostsByCategory(category._id));
+      dispatch(fetchPostsByCategory(CAT_ID));
     }
     dispatch(fetchPosts());
   }, [dispatch]);
 
   return (
     <div className="container">
-      <NoteForm catId={category._id} catName={PRODUCTS} count={products.length} />
+      <NoteForm catId={CAT_ID} catName={CAT_NAME} count={products.length} />
       <NoteList
         notes={products}
         allPosts={allPostsCategory}

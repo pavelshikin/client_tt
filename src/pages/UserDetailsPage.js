@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import {
   ExclamationCircleOutlined,
   UsergroupAddOutlined,
@@ -20,6 +21,7 @@ const allRoles = [
 ]
 
 const UserDetailsPage = () => {
+  const { isOwner } = useAuth();
   const {state} = useLocation();
   const error = useSelector(state => state.app.error);
   const [showForm, setShowForm] = useState(false);
@@ -100,12 +102,18 @@ const UserDetailsPage = () => {
         <div className={s.label}>Email: {state.user.email}</div>
         <div className={s.label}>Роль: {getRoles(state.user.roles)}</div>
       </div>
-      <div className={s.actions}>
-        {/* <Btn onClick={() => setEdit(true)}>Сменить пароль</Btn> */}
-        <Btn onClick={() => setShowForm(!showForm)}><UsergroupAddOutlined /> Управление ролями</Btn>
-        <Btn onClick={showConfirm}><UserDeleteOutlined /> Удалить</Btn>
-      </div>
-      { showForm ? <div className={s.form}>{roleForm()}</div>  : '' }
+
+      {
+        isOwner
+        ? <div className={s.actions}>
+          {/* <Btn onClick={() => setEdit(true)}>Сменить пароль</Btn> */}
+          <Btn onClick={() => setShowForm(!showForm)}><UsergroupAddOutlined /> Управление ролями</Btn>
+          <Btn onClick={showConfirm}><UserDeleteOutlined /> Удалить</Btn>
+        </div>
+        : ''
+      }
+
+      { showForm && isOwner ? <div className={s.form}>{roleForm()}</div>  : '' }
     </div>
   );
 }

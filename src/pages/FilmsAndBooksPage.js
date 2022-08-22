@@ -10,15 +10,15 @@ import { fetchPosts } from '../store/actions';
 
 const { TabPane } = Tabs;
 
-const FILMS = 'films'
-const BOOKS = 'books'
+const CAT_NAME_FILMS = 'films';
+const CAT_NAME_BOOKS = 'books';
+const CAT_ID_FILMS = '60df0aa75ae4dd2c6427e323';
+const CAT_ID_BOOKS = '60df0aba5ae4dd2c6427e324';
 
 const FilmsAndBooksPage = () => {
   const posts = useSelector(state => state.posts.posts);
-  const films = postsByCategory(posts, FILMS);
-  const books = postsByCategory(posts, BOOKS);
-  const catFilms = getCategoryByValue(posts, FILMS);
-  const catBooks = getCategoryByValue(posts, BOOKS);
+  const films = postsByCategory(posts, CAT_NAME_FILMS);
+  const books = postsByCategory(posts, CAT_NAME_BOOKS);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const FilmsAndBooksPage = () => {
           }
           key="1"
         >
-          <NoteForm catId={catFilms._id} catName={FILMS} />
+          <NoteForm catId={CAT_ID_FILMS} catName={CAT_NAME_FILMS} />
           <NoteList notes={films} />
         </TabPane>
         <TabPane
@@ -55,7 +55,7 @@ const FilmsAndBooksPage = () => {
           }
           key="2"
         >
-          <NoteForm catId={catBooks._id} catName={BOOKS} />
+          <NoteForm catId={CAT_ID_BOOKS} catName={CAT_NAME_BOOKS} />
           <NoteList notes={books} />
         </TabPane>
       </Tabs>

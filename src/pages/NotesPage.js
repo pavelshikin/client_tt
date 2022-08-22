@@ -6,26 +6,27 @@ import { postsByCategory, getCategoryByValue } from '../utilits/postsByCategory'
 import NoteForm from '../components/Note/NoteForm';
 import NoteList from '../components/Note/NoteList';
 
-const NOTES = 'notes';
+const CAT_NAME = 'notes';
+const CAT_ID = '60d732d173ec823842af9ad2';
+
 
 const NotesPage = () => {
   const { user, isOwner  } = useAuth();
   const posts = useSelector(state => state.posts.posts);
   const allPosts = useSelector(state => state.posts.postsByCategory);
-  const category = getCategoryByValue(posts, NOTES);
   const dispatch = useDispatch();
-  let notes = postsByCategory(posts, NOTES);
+  let notes = postsByCategory(posts, CAT_NAME);
 
   useEffect(() => {
     if (isOwner) {
-      dispatch(fetchPostsByCategory(category._id));
+      dispatch(fetchPostsByCategory(CAT_ID));
     }
     dispatch(fetchPosts());
   }, [dispatch, user]);
 
   return (
     <div className="container">
-      <NoteForm catId={category._id} catName={NOTES} count={notes.length} />
+      <NoteForm catId={CAT_ID} catName={CAT_NAME} count={notes.length} />
       <NoteList notes={notes} allPosts={allPosts} checkBox={isOwner} />
     </div>
   );
