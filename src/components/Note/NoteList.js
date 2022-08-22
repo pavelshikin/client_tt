@@ -11,7 +11,6 @@ const NoteList = ({ notes, allPosts, checkBox, checkDefault }) => {
     setCheck(prevState => !prevState);
   };
 
-
   const renderCheck = () => {
     return (
       <>
@@ -36,7 +35,7 @@ const NoteList = ({ notes, allPosts, checkBox, checkDefault }) => {
     return posts.map((post, idx) => <NoteItem key={idx} note={post} />);
   };
 
-  if (notes.length === 0 && allPosts?.lenght === 0) {
+  if (notes.length === 0 || allPosts?.lenght === 0) {
     return (
       <div className={s.content}>
         {renderCheck()}
@@ -44,6 +43,7 @@ const NoteList = ({ notes, allPosts, checkBox, checkDefault }) => {
       </div>
     );
   }
+
 
   return (
     <div className={s.content}>

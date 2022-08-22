@@ -27,7 +27,7 @@ const ProductsPage = () => {
         notes={products}
         allPosts={allPostsCategory}
         checkBox={isAdmin}
-        checkDefault={true}
+        checkDefault={isAdmin}
       />
     </div>
   );
