@@ -33,8 +33,12 @@ const Routing = () => {
       </RoleRoute>
 
       <RoleRoute role="OWNER" path="/user/:id" exact={true}>
-        < UserDetailsPage / >
+        <UserDetailsPage / >
       </RoleRoute>
+
+      <PrivateRoute path="/users/me" exact={true}>
+        <UserDetailsPage / >
+      </PrivateRoute>
 
       <PrivateRoute path="/" exact={true}>
         <HomePage />

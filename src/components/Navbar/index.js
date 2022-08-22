@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button, Drawer, Menu, Layout } from 'antd';
 import {
@@ -93,7 +93,14 @@ function NavBar() {
         <div className={s.rightBox}>
           {user ? (
             <>
-              <span>{user.username}</span>
+              <Link to={{
+                className: s.userName,
+                pathname: '/users/me',
+                state: {user: user} }}
+              >
+                {user.username}
+              </Link>
+
               <Button
                 type="link"
                 onClick={exit}

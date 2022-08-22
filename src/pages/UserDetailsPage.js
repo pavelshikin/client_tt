@@ -21,13 +21,14 @@ const allRoles = [
 ]
 
 const UserDetailsPage = () => {
-  const { isOwner } = useAuth();
+  const { isOwner, user } = useAuth();
   const {state} = useLocation();
   const error = useSelector(state => state.app.error);
   const [showForm, setShowForm] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [userRoles, setUserRoles] = useState(state.user.roles)
+  const thisUser = state?.user || user
+  const [userRoles, setUserRoles] = useState(thisUser.roles)
 
   const removeUser = id => {
     dispatch(deleteUser(id));
@@ -98,9 +99,9 @@ const UserDetailsPage = () => {
   return (
     <div className="container">
       <div className={s.details}>
-        <div className={s.label}>Имя: {state.user.username}</div>
-        <div className={s.label}>Email: {state.user.email}</div>
-        <div className={s.label}>Роль: {getRoles(state.user.roles)}</div>
+        <div className={s.label}>Имя: {thisUser.username}</div>
+        <div className={s.label}>Email: {thisUser.email}</div>
+        <div className={s.label}>Роль: {getRoles(thisUser.roles)}</div>
       </div>
 
       {
