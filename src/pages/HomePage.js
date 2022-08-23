@@ -23,16 +23,16 @@ const HomePage = () => {
 
   let menuItems = [
     {
-      count: notes.length,
-      text: 'Заметки',
-      href: '/notes',
-      icon: <ProfileFilled style={{ fontSize: 58 }} />
-    },
-    {
       count: products.length,
       text: 'Покупки',
       href: '/products',
       icon: <ShoppingFilled style={{ fontSize: 58 }} />
+    },
+    {
+      count: notes.length,
+      text: 'Заметки',
+      href: '/notes',
+      icon: <ProfileFilled style={{ fontSize: 58 }} />
     },
     {
       count: films.length + books.length,
@@ -44,9 +44,6 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(fetchPosts());
-    if(isOwner){
-      dispatch(fetchPostsByCategory('60d788aee61f64154ce18551'));
-    }
   }, [dispatch]);
 
   return (
