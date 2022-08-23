@@ -44,14 +44,14 @@ const AuthProvider = ({ children }) => {
 
   const login = async data => {
     Cookies.set('Authentication', encodeURIComponent(data.Authentication), {
-      expires: 1,
+      expires: 7,
       path: '/',
       sameSite: 'None',
       Secure: true
     });
 
     Cookies.set('Refresh', encodeURIComponent(data.Refresh), {
-      expires: 1,
+      expires: 7,
       path: '/',
       sameSite: 'None',
       Secure: true
