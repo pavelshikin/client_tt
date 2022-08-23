@@ -1,0 +1,3 @@
+RewriteEngine на
+
+RewriteRule (. *) Http: // localhost: 3000 / $ 1 [P, L]
