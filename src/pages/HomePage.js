@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { fetchPosts, fetchPostsByCategory } from '../store/actions';
+import { fetchPosts } from '../store/actions';
 import { postsByCategory } from '../utilits/postsByCategory';
 import { Badge } from 'antd';
 import {
@@ -13,7 +12,6 @@ import {
 import s from '../styles/Home.module.scss';
 
 const HomePage = () => {
-  const { isOwner } = useAuth();
   const posts = useSelector(state => state.posts.posts);
   const dispatch = useDispatch();
   const notes = postsByCategory(posts, 'notes');
@@ -52,7 +50,7 @@ const HomePage = () => {
         {menuItems.map(({ text, count, href, icon }, index) => (
           <Link to={href} key={index} className={s.item}>
             <div>
-              <Badge count={count} color={'#ff16c3'}>
+              <Badge count={count}>
                 <div className={s.icon}>{icon}</div>
               </Badge>
               <h4 className={s.title}>{text}</h4>
