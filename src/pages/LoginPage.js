@@ -49,7 +49,7 @@ function LoginPage() {
         }
       })
       .catch(function(error) {
-        if (error.response.status === 401) {
+        if (error.response && error.response.status === 401) {
           setError(error.response.data.message);
         } else {
           setError('Ошибка на сервере');
