@@ -48,7 +48,7 @@ function LoginPage() {
           setError('Ошибка');
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         if (error.response && error.response.status === 401) {
           setError(error.response.data.message);
         } else {
@@ -60,15 +60,22 @@ function LoginPage() {
     dispatch(hideLoader());
   };
 
+  const handleKeypress = e => {
+    if (e.keyCode === 13) {
+      signIn();
+    }
+  };
+
   return (
     <div className={'container'}>
-      <div className={s.box}>
+      <form className={s.box} onKeyDown={handleKeypress}>
         <Input
           value={email}
           onChange={e => setEmail(e.target.value)}
           label="Email"
           type="email"
           style={{ marginTop: 10 }}
+          autoComplete="off"
         />
         <Input
           value={password}
@@ -76,12 +83,13 @@ function LoginPage() {
           type="password"
           label="Password"
           style={{ margin: '20px 0 10px' }}
+          autoComplete="off"
         />
         <div className={'error'}>{error}</div>
         <Btn style={{ marginTop: 'auto' }} onClick={signIn}>
           Войти
         </Btn>
-      </div>
+      </form>
     </div>
   );
 }

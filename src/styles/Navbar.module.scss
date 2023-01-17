@@ -1,28 +1,30 @@
 @import '../theme/palette.module';
 
 .head {
-   position: fixed;
-   width: 100%;
-   top: 0;
-   background: $bgMain;
-   height: 45px;
-   box-shadow: 0px 3px 6px -3px $shadow;
-   display: flex;
+   position       : fixed;
+   width          : 100%;
+   height         : auto !important;
+   top            : 0;
+   display        : flex;
    justify-content: space-between;
-   align-items: center;
-   color: $secondary;
+   align-items    : center;
+   line-height    : 1;
+   background     : $bgMain;
+   box-shadow     : 0px 3px 6px -3px $shadow;
+
+   color  : $secondary;
    z-index: 999;
 
    .btmMenu {
-      color: $primary;
+      color     : $primary;
       background: transparent;
-      font-size: 21px;
+      font-size : 21px;
    }
 
    .rightBox {
       a {
-         color: $secondary !important;
-         font-size: 16px;
+         color       : $secondary !important;
+         font-size   : 16px;
          margin-right: 16px;
 
          &:hover {
@@ -31,7 +33,7 @@
       }
 
       .btnExit {
-         color: $red;
+         color    : $red;
          font-size: 20px;
       }
    }
@@ -41,24 +43,24 @@
    max-width: 100px;
 }
 
-.ant-drawer-body{
+.ant-drawer-body {
    background: $bgMain;
 }
 
 .menu {
-   padding: 0;
-   background: transparent;
+   padding     : 0;
+   background  : transparent;
    border-right: none;
 
    .menuItem {
-      background: transparent;
-      color: $primary;
-      font-size: 18px;
-      padding: 0 10px 0 15px;
+      background   : transparent;
+      color        : $primary;
+      font-size    : 18px;
+      padding      : 0 10px 0 15px;
       margin-bottom: 0 !important;
 
       &:hover {
-         color: $primary;
+         color     : $primary;
          background: #9c9c9c94;
       }
    }
@@ -72,7 +74,7 @@
    background-color: #7b7b7b94 !important;
 
    &:hover {
-      color: $primary;
+      color     : $primary;
       background: #9c9c9c94 !important;
    }
 }

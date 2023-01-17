@@ -13,7 +13,7 @@ const { TextArea } = Input;
 const NoteForm = ({ catId, catName, count }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
   const dispatch = useDispatch();
 
   const addNote = () => {
@@ -23,11 +23,11 @@ const NoteForm = ({ catId, catName, count }) => {
       categoryId: catId,
       categoryName: catName
     };
-    
+
     if (!data.title) {
       data.title = `Заметка ${count + 1}`;
     };
-  
+
     dispatch(createPost(data));
     setTitle('');
     setContent('');
@@ -51,22 +51,22 @@ const NoteForm = ({ catId, catName, count }) => {
               onChange={e => setTitle(e.target.value)}
               placeholder="Название"
               type="text"
-              style={{ marginTop: 10, background: '#fff', borderRadius: 5 }}
+              style={{ margin: '5px 0 10px',background: '#fff', borderRadius: 5 }}
             />
             {catName === 'books' || catName === 'films' ? null : (
               <TextArea
                 value={content}
                 onChange={e => setContent(e.target.value)}
                 placeholder="Текст"
-                style={{ margin: '10px 0 10px', borderRadius: 5, padding: 10 }}
+                style={{ borderRadius: 5, padding: 10 }}
               />
             )}
-            <div className={'error'}>{error}</div>
+            {/* <div className={'error'}>{error}</div> */}
             <Btn
               type="primary"
               ghost={false}
               block
-              style={{ marginTop: 'auto' }}
+              style={{ marginTop: 12 }}
               onClick={addNote}
             >
               Добавить
