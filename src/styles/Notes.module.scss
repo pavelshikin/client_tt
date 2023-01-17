@@ -120,3 +120,7 @@
 .ant-collapse-borderless>.ant-collapse-item:last-child {
    border-radius: 5px !important;
 }
+
+.ant-tabs {
+   overflow: unset !important;
+}
